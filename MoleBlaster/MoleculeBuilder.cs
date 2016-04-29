@@ -268,7 +268,9 @@ namespace MoleBlaster
                 MessageBox.Show("No molecule loaded... " + except);
             }
          }
-      
+
+        //private Fragment combinatoricGeneration(IndigoObject structure, )
+        
 
         //Need Combainatorics still...
         private List<Fragment> generateFragByRules()
@@ -279,18 +281,25 @@ namespace MoleBlaster
             progressBar1.Value = 0;
             progressBar1.Step = 1;
 
+            //Do this to preserve hydrogen numbers so that breaking bonds doesn't cause re-ordering.
+            foreach (IndigoObject atom in _chemStructures[0].iterateAtoms())
+            {
+                atom.countHydrogens();
+            }
+
             List<Fragment> _frags = new List<Fragment>();
-            //Console.Out.WriteLine("Original Mass:" + _chemStructures[0].grossFormula());
-            //Console.Out.WriteLine(_chemStructures[0].monoisotopicMass());
             foreach (fragmentationRule fragment in _rules)
             {
                 IndigoObject tempStructure = _chemStructures[0].clone();
+
                 tempStructure.getBond(fragment._bondId).remove();
+                
                 progressBar1.PerformStep();
                 percent = (int)(progressBar1.Value / (progressBar1.Maximum * 100));
                 label3.Text = percent.ToString() + "%";
                 label3.Refresh();
 
+                Console.Out.WriteLine("after " + tempStructure.getAtom(fragment._atomId2).countHydrogens());
 
                 if (fragment._bondId2 != -1)
                 {
@@ -355,6 +364,14 @@ namespace MoleBlaster
                     _frags.Add(currFragAdd);                   
                 }
 
+                double total = 0.00;
+                foreach (Fragment f in _frags)
+                {
+                    
+                    total = total + f.mass;
+                }
+                Console.Out.WriteLine("Fragment 1 + Fragment 2:" + total);
+
                 }
             return _frags;
             }
@@ -366,11 +383,15 @@ namespace MoleBlaster
             int PBar_Percent = 0;
             progressBar1.Value = PBar_Percent;
             progressBar1.Step = 1;
-            
+
+
+            //Do this to preserve hydrogen numbers so that breaking bonds doesn't cause re-ordering.
+            foreach (IndigoObject atom in _chemStructures[0].iterateAtoms())
+            {
+                atom.countHydrogens();
+            }
 
             List<Fragment> _frags = new List<Fragment>();
-            //Console.Out.WriteLine("Original Mass:" + _chemStructures[0].grossFormula());
-            //Console.Out.WriteLine(_chemStructures[0].monoisotopicMass());
 
             
             foreach (IndigoObject bond in _chemStructures[0].iterateBonds())
@@ -419,8 +440,6 @@ namespace MoleBlaster
 
                         Fragment currFragAdd = new Fragment(naiveFragment);
                         currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);
-                        //Need to subtract mass of Hydrogen, rearranges to full octet which is not right.  Make homolytic
-                        currFragAdd.mass = currFragAdd.mass - 1.007825;
                         _frags.Add(currFragAdd);
                     }
                 }
