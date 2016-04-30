@@ -287,94 +287,98 @@ namespace MoleBlaster
                 atom.countHydrogens();
             }
 
+            Console.Out.WriteLine("TEST THE TOTAL COMPS IS " + _chemStructures[0].countComponents());
             List<Fragment> _frags = new List<Fragment>();
-            foreach (fragmentationRule fragment in _rules)
-            {
-                IndigoObject tempStructure = _chemStructures[0].clone();
+                _frags.AddRange(recursiveFragGeneration(_chemStructures[0], _rules, ""));
 
-                tempStructure.getBond(fragment._bondId).remove();
-                
                 progressBar1.PerformStep();
                 percent = (int)(progressBar1.Value / (progressBar1.Maximum * 100));
                 label3.Text = percent.ToString() + "%";
                 label3.Refresh();
 
-                Console.Out.WriteLine("after " + tempStructure.getAtom(fragment._atomId2).countHydrogens());
+                return _frags;
+        }
 
-                if (fragment._bondId2 != -1)
+        private double calculateMassShift(fragmentationRule rule, IndigoObject structure)
+        {
+            double mshift = 0.00;
+
+            foreach (IndigoObject atom in structure.iterateAtoms())
+            {
+                if (atom.symbol().Equals("R"))
                 {
-                    tempStructure.getBond(fragment._bondId2).remove();
+                        try
+                        {
+                            double RgrpMassShift = double.Parse(rmasses[rmasses.IndexOf(rmasses.Find(x => x.index == atom.index()))].interfaceText.Text);
+                            mshift += RgrpMassShift;
+                        }
+                        catch (FormatException e)
+                        {
+                            MessageBox.Show("All R-Groups must have masses... R Group #" + atom.index() + " does not!");
+                        }
                 }
-
-                for (int i = 0; i < tempStructure.countComponents(); i++)
+                else if (atom.index() == rule._atomId1)
                 {
-                    IndigoObject currFragment = tempStructure.component(i).clone();
-                    double totalMassShift = 0.00;
-                    //Get R Group Masses
-                    foreach (IndigoObject rgroup in _chemStructures[0].iterateAtoms())
-                    {
-                        if (rgroup.symbol().Equals("R"))
-                        {
-                            if (rgroup.componentIndex() == i)
-                            {
-                                try { 
-                                double RgrpMassShift = double.Parse(rmasses[rmasses.IndexOf(rmasses.Find(x => x.index == rgroup.index()))].interfaceText.Text);
-                                Console.Out.WriteLine("BEFORE " + totalMassShift);
-                                    totalMassShift += RgrpMassShift;
-                                    Console.Out.WriteLine("AFTER " + totalMassShift);
-                                    }
-                                catch (FormatException e)
-                                {
-                                    MessageBox.Show("All R-Groups must have masses... R Group #" +rgroup.index() + " does not!");
-                                }
-                                //Console.Out.WriteLine(rgroup.index() + " has a mass of " +RgrpMassShift);
-                            }
-
-                        }
-                    }
-                    //Get MassShift Masses
-                    if (tempStructure.getAtom(fragment._atomId1).componentIndex() == i)
-                    {
-                        totalMassShift += fragment._MassShift1;
-
-                    }
-
-                    if (tempStructure.getAtom(fragment._atomId2).componentIndex() == i)
-                    {
-                        totalMassShift += fragment._MassShift2;
-                    }
-
-                    if (fragment._bondId2 != -1) { 
-                        if (tempStructure.getAtom(fragment._atomId3).componentIndex() == i)
-                        {
-                            totalMassShift += fragment._MassShift3;
-                        }
-
-                        if (tempStructure.getAtom(fragment._atomId4).componentIndex() == i)
-                        {
-                            totalMassShift += fragment._MassShift4;
-                        }
-                    }
-
-                    Console.Out.WriteLine(currFragment.grossFormula());
-                    Console.Out.WriteLine("Fragment: "+ (currFragment.monoisotopicMass() + totalMassShift));
-
-                    Fragment currFragAdd = new Fragment(fragment);
-                    currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);
-                    _frags.Add(currFragAdd);                   
+                    mshift += rule._MassShift1;
                 }
-
-                double total = 0.00;
-                foreach (Fragment f in _frags)
-                {
-                    
-                    total = total + f.mass;
+                else if (atom.index() == rule._atomId2){
+                    mshift += rule._MassShift2;
                 }
-                Console.Out.WriteLine("Fragment 1 + Fragment 2:" + total);
-
-                }
-            return _frags;
             }
+            return mshift;
+
+        }
+
+        private List<Fragment> recursiveFragGeneration(IndigoObject prefrag, List<fragmentationRule> _copyRules, string currStr)
+        {
+            List<fragmentationRule> copyRules = new List<fragmentationRule>();
+            copyRules.AddRange(_copyRules);
+            List<Fragment> _frags = new List<Fragment>();
+            Console.Out.WriteLine("Number frags + " + prefrag.countComponents());
+            foreach (IndigoObject structure in prefrag.iterateComponents())
+            {
+                foreach (fragmentationRule rule in _copyRules)
+                {
+                    IndigoObject temp = structure.clone();
+                    try
+                    {
+                        temp.getBond(rule._bondId).remove();
+                        for (int i = 0; i < temp.countComponents(); i++)
+                        {
+                            IndigoObject currFragment = temp.component(i).clone();
+                            double totalMassShift = calculateMassShift(rule, currFragment);
+                            Fragment currFragAdd = new Fragment(rule);
+                            currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);
+                            currFragAdd.fragmentName = currStr;
+                            _frags.Add(currFragAdd);
+                        }
+
+                        if (currStr != "")
+                        {
+                            currStr = currStr + "+" + rule.fragmentName;
+                        }
+                        else
+                        {
+                            currStr = rule.fragmentName;
+                        }
+                        copyRules.Remove(rule);
+                        if (copyRules.Count > 0)
+                        {
+                            recursiveFragGeneration(temp, copyRules, currStr);
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        //Console.Out.WriteLine("That Atom doesn't exist in thsi structure!" + e);
+                        Console.Out.WriteLine("I'm happening--");
+                    }
+                }
+            }
+
+            return _frags;
+        }
+
         //start naive
         private List<Fragment> generateFragByNaive()
         {
