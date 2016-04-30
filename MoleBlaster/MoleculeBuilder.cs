@@ -146,6 +146,45 @@ namespace MoleBlaster
             ms.Close();
         }
 
+
+        private void renderMolecule2(IndigoObject input, string mw)
+        {
+            IndigoRenderer renderer = new IndigoRenderer(_indigo);
+            _indigo.setOption("render-output-format", "emf");
+            _indigo.setOption("render-margins", 10, 10);
+
+            if (showBonds == true)
+            {
+                _indigo.setOption("render-bond-ids-visible", true);
+            }
+            else
+            {
+                _indigo.setOption("render-bond-ids-visible", false);
+            }
+            if (showAtoms == true)
+            {
+                _indigo.setOption("render-atom-ids-visible", true);
+            }
+            else
+            {
+                _indigo.setOption("render-atom-ids-visible", false);
+            }
+            _indigo.setOption("render-atom-ids-visible", false);
+            _indigo.setOption("render-atom-ids-visible", true);
+            _indigo.setOption("render-label-mode", "hetero");
+            _indigo.setOption("render-stereo-style", "none");
+            _indigo.setOption("render-bond-length", 45);
+
+            input.layout();
+            Form1 f = new Form1();
+            MemoryStream ms = new MemoryStream(renderer.renderToBuffer(input));
+            f.pictureBox1.Image = Image.FromStream(ms);
+            f.label1.Text = mw;
+            f.Show();
+            ms.Close();
+        }
+
+
         private void button6_Click(object sender, EventArgs e)
         {
             if (showAtoms == false)
@@ -289,7 +328,7 @@ namespace MoleBlaster
 
             Console.Out.WriteLine("TEST THE TOTAL COMPS IS " + _chemStructures[0].countComponents());
             List<Fragment> _frags = new List<Fragment>();
-                _frags.AddRange(recursiveFragGeneration(_chemStructures[0], _rules, ""));
+                _frags.AddRange(recursiveFragGeneration(_chemStructures[0], _rules));
 
                 progressBar1.PerformStep();
                 percent = (int)(progressBar1.Value / (progressBar1.Maximum * 100));
@@ -329,12 +368,11 @@ namespace MoleBlaster
 
         }
 
-        private List<Fragment> recursiveFragGeneration(IndigoObject prefrag, List<fragmentationRule> _copyRules, string currStr)
+       private List<Fragment> recursiveFragGeneration(IndigoObject prefrag, List<fragmentationRule> _copyRules, string currName = "")
         {
             List<fragmentationRule> copyRules = new List<fragmentationRule>();
             copyRules.AddRange(_copyRules);
             List<Fragment> _frags = new List<Fragment>();
-            Console.Out.WriteLine("Number frags + " + prefrag.countComponents());
             foreach (IndigoObject structure in prefrag.iterateComponents())
             {
                 foreach (fragmentationRule rule in _copyRules)
@@ -349,33 +387,23 @@ namespace MoleBlaster
                             double totalMassShift = calculateMassShift(rule, currFragment);
                             Fragment currFragAdd = new Fragment(rule);
                             currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);
-                            currFragAdd.fragmentName = currStr;
+
                             _frags.Add(currFragAdd);
+                            copyRules.Remove(rule);
+                                                     
+                            currName = currName + "+" + rule.fragmentName;
+                            }
+                        _frags.AddRange(recursiveFragGeneration(temp, copyRules, currName));
                         }
-
-                        if (currStr != "")
-                        {
-                            currStr = currStr + "+" + rule.fragmentName;
-                        }
-                        else
-                        {
-                            currStr = rule.fragmentName;
-                        }
-                        copyRules.Remove(rule);
-                        if (copyRules.Count > 0)
-                        {
-                            recursiveFragGeneration(temp, copyRules, currStr);
-                        }
-
-                    }
+                    
                     catch (Exception e)
                     {
-                        //Console.Out.WriteLine("That Atom doesn't exist in thsi structure!" + e);
-                        Console.Out.WriteLine("I'm happening--");
+                        Console.Out.WriteLine("That Atom doesn't exist in thsi structure!" + e);
                     }
                 }
             }
 
+            renderMolecule2(prefrag, prefrag.monoisotopicMass().ToString());
             return _frags;
         }
 
