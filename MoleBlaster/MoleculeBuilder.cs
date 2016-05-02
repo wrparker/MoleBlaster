@@ -368,7 +368,7 @@ namespace MoleBlaster
 
         }
 
-       private List<Fragment> recursiveFragGeneration(IndigoObject prefrag, List<fragmentationRule> _copyRules, string currName = "")
+       private List<Fragment> recursiveFragGeneration(IndigoObject prefrag, List<fragmentationRule> _copyRules, string currName = "" )
         {
             List<fragmentationRule> copyRules = new List<fragmentationRule>();
             copyRules.AddRange(_copyRules);
@@ -381,17 +381,26 @@ namespace MoleBlaster
                     try
                     {
                         temp.getBond(rule._bondId).remove();
+                        currName = currName + "+" + rule.fragmentName;
+                        if (_copyRules.Count == _rules.Count)
+                        {
+                            currName = rule.fragmentName;
+                        }
+
+                        Console.Out.WriteLine("RULE NAME " + currName);
+
                         for (int i = 0; i < temp.countComponents(); i++)
                         {
                             IndigoObject currFragment = temp.component(i).clone();
                             double totalMassShift = calculateMassShift(rule, currFragment);
                             Fragment currFragAdd = new Fragment(rule);
                             currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);
+                            currFragAdd.fragmentName = currName;
 
                             _frags.Add(currFragAdd);
                             copyRules.Remove(rule);
                                                      
-                            currName = currName + "+" + rule.fragmentName;
+                            
                             }
                         _frags.AddRange(recursiveFragGeneration(temp, copyRules, currName));
                         }
@@ -403,7 +412,7 @@ namespace MoleBlaster
                 }
             }
 
-            renderMolecule2(prefrag, prefrag.monoisotopicMass().ToString());
+           // renderMolecule2(prefrag, prefrag.monoisotopicMass().ToString());
             return _frags;
         }
 
