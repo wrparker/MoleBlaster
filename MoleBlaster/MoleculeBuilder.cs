@@ -34,11 +34,6 @@ namespace MoleBlaster
 
         }
 
-        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar1.PerformStep();
-        }
-
         private void loadInput()
         {
             if (!File.Exists(textBox1.Text))
@@ -94,10 +89,9 @@ namespace MoleBlaster
                 tableLayoutPanel1.Controls.Add(temp, 0 /* Column Index */, i /* Row index */);
             }
 
-            Console.WriteLine(_chemStructures[0].getAtom(17));
             this.tableLayoutPanel1.ResumeLayout();
+            this.Refresh();
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -112,6 +106,9 @@ namespace MoleBlaster
         private void button2_Click(object sender, EventArgs e)
         {
             loadInput();
+            this.button2.Enabled = false;
+            this.button1.Enabled = false;
+            this.button11.Enabled = true;
         }
 
         private void renderMolecule(IndigoObject input)
@@ -323,10 +320,15 @@ namespace MoleBlaster
             //Do this to preserve hydrogen numbers so that breaking bonds doesn't cause re-ordering.
             foreach (IndigoObject atom in _chemStructures[0].iterateAtoms())
             {
+                try { 
                 atom.countHydrogens();
+                    }
+                catch
+                {
+                    Console.Out.Write("Pseudo atoms have no H's");
+                }
             }
 
-            Console.Out.WriteLine("TEST THE TOTAL COMPS IS " + _chemStructures[0].countComponents());
             List<Fragment> _frags = new List<Fragment>();
                 _frags.AddRange(recursiveFragGeneration(_chemStructures[0], _rules));
 
@@ -338,14 +340,16 @@ namespace MoleBlaster
                 return _frags;
         }
 
-        private double calculateMassShift(fragmentationRule rule, IndigoObject structure)
+        private double calculateRgrpMassShift(fragmentationRule rule, IndigoObject structure)
         {
+            Console.Out.WriteLine(rule._MassShift1);
             double mshift = 0.00;
 
             foreach (IndigoObject atom in structure.iterateAtoms())
             {
-                if (atom.symbol().Equals("R"))
-                {
+                    if (atom.symbol().Equals("R"))
+                    {
+
                         try
                         {
                             double RgrpMassShift = double.Parse(rmasses[rmasses.IndexOf(rmasses.Find(x => x.index == atom.index()))].interfaceText.Text);
@@ -355,15 +359,10 @@ namespace MoleBlaster
                         {
                             MessageBox.Show("All R-Groups must have masses... R Group #" + atom.index() + " does not!");
                         }
-                }
-                else if (atom.index() == rule._atomId1)
-                {
-                    mshift += rule._MassShift1;
-                }
-                else if (atom.index() == rule._atomId2){
-                    mshift += rule._MassShift2;
+
                 }
             }
+            Console.Out.WriteLine("MASS SHIFT FINAL " + mshift);
             return mshift;
 
         }
@@ -381,6 +380,10 @@ namespace MoleBlaster
                     try
                     {
                         temp.getBond(rule._bondId).remove();
+                        if (rule._bondId2 != -1)
+                        {
+                            temp.getBond(rule._bondId2).remove();
+                        }
                         currName = currName + "+" + rule.fragmentName;
                         if (_copyRules.Count == _rules.Count)
                         {
@@ -392,15 +395,29 @@ namespace MoleBlaster
                         for (int i = 0; i < temp.countComponents(); i++)
                         {
                             IndigoObject currFragment = temp.component(i).clone();
-                            double totalMassShift = calculateMassShift(rule, currFragment);
+                            double totalMassShift = 0.00;
+                            totalMassShift = calculateRgrpMassShift(rule, currFragment);
                             Fragment currFragAdd = new Fragment(rule);
-                            currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);
-                            currFragAdd.fragmentName = currName;
 
+                            Console.Out.WriteLine("MASS BEFORE " + totalMassShift);
+                            foreach (IndigoObject atoms in temp.component(i).iterateAtoms())
+                            {
+                                if (atoms.componentIndex() == i)
+                                {
+                                    if (atoms.index() == rule._atomId1)
+                                    {
+                                        totalMassShift = totalMassShift + rule._MassShift1;
+                                    }
+                                    if (atoms.index() == rule._atomId2)
+                                    {
+                                        totalMassShift = totalMassShift + rule._MassShift2;
+                                    }
+                                }
+                            }
+                            currFragAdd.mass = (currFragment.monoisotopicMass() + totalMassShift);                                                     
+                            currFragAdd.fragmentName = currName;
                             _frags.Add(currFragAdd);
                             copyRules.Remove(rule);
-                                                     
-                            
                             }
                         _frags.AddRange(recursiveFragGeneration(temp, copyRules, currName));
                         }
@@ -516,6 +533,15 @@ namespace MoleBlaster
         {
             this.Close();
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            MoleculeBuilder f = new MoleculeBuilder();
+            this.Close();
+            f.Show();
+            
+            
+        }
     }
 
     public class GenericGroup
@@ -542,6 +568,11 @@ namespace MoleBlaster
             _bondId2 = rule._bondId2;
             _atomId3 = rule._atomId3;
             _atomId4 = rule._atomId4;
+
+            _MassShift1 = rule._MassShift1;
+            _MassShift2 = rule._MassShift2;
+            _MassShift3 = rule._MassShift3;
+            _MassShift4 = rule._MassShift4;
 
 
             mass = 0;
