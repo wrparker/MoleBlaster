@@ -33,7 +33,7 @@ namespace MoleBlaster
 
         private void testFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
 
@@ -56,6 +56,16 @@ namespace MoleBlaster
         {
             TemplateSelector g = new TemplateSelector();
             g.ShowDialog();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 

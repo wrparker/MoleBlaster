@@ -15,6 +15,8 @@ namespace MoleBlaster
         public about()
         {
             InitializeComponent();
+            label1.Text = "Moleblaster version " + Globals.version + "\r\n Written by W. Ryan Parker\r\n";
+            linkLabel1.Text = "http://github.com/wrparker/moleblaster";
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -25,6 +27,11 @@ namespace MoleBlaster
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkLabel1.Text);
         }
     }
 }

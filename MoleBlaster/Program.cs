@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace MoleBlaster
 {
+    public static class Globals
+    {
+        public const string version = "0.1-alpha";
+    }
+    
     static class Program
     {
         /// <summary>
