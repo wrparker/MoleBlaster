@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:installer_setup"
+"ProjectName" = "8:setup_MSVS_2013"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -31,6 +31,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -47,6 +63,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -123,25 +155,25 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:installer_setup"
+        "ProductName" = "8:MoleBlaster"
         "ProductCode" = "8:{9DFAEBD0-EB6E-4609-93BE-476EDA5F5676}"
-        "PackageCode" = "8:{4513CA5C-97D8-4AFF-AB82-05E1453C9542}"
+        "PackageCode" = "8:{C9BAEAA2-CFDB-4875-923C-8DB9F189E788}"
         "UpgradeCode" = "8:{6116D735-145B-4DD4-A07A-E1FFCA7988FD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
-        "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
-        "Title" = "8:installer_setup"
-        "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
-        "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:0.1"
+        "Manufacturer" = "8:Brodbelt Group"
+        "ARPHELPTELEPHONE" = "8:501-940-2932"
+        "ARPHELPLINK" = "8:brodbelt.cm.utexas.edu/research/"
+        "Title" = "8:MoleBlaster Setup (MSVS2013)"
+        "Subject" = "8:Mass Spectrometry"
+        "ARPCONTACT" = "8:W. Ryan Parker"
+        "Keywords" = "8:Mass Spectrometry Brodbelt Utexas"
+        "ARPCOMMENTS" = "8:Mass Spectrometry Fragmentation Software"
+        "ARPURLINFOABOUT" = "8:github.com/wrparker/"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
