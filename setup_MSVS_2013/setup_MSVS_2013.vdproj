@@ -377,15 +377,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MoleBlaster"
-        "ProductCode" = "8:{9DFAEBD0-EB6E-4609-93BE-476EDA5F5676}"
-        "PackageCode" = "8:{C9BAEAA2-CFDB-4875-923C-8DB9F189E788}"
+        "ProductCode" = "8:{ACCE44ED-B913-4F4E-8D3C-02C549081F84}"
+        "PackageCode" = "8:{E9F90168-F93A-4409-8A52-949FC9602649}"
         "UpgradeCode" = "8:{6116D735-145B-4DD4-A07A-E1FFCA7988FD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.1"
+        "ProductVersion" = "8:0.1.1"
         "Manufacturer" = "8:Brodbelt Group"
         "ARPHELPTELEPHONE" = "8:501-940-2932"
         "ARPHELPLINK" = "8:brodbelt.cm.utexas.edu/research/"
@@ -500,9 +500,9 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1A83D71A2EC14DDBB38F419D6A2F88A6"
             {
-            "Name" = "8:Shortcut to Primary output from MoleBlaster (Active)"
+            "Name" = "8:MoleBlaster"
             "Arguments" = "8:"
-            "Description" = "8:"
+            "Description" = "8:Mass Spectrometry Toolkit"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
@@ -514,7 +514,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_505776B484844069B95454E0ACEE101A"
             {
-            "Name" = "8:Shortcut to Primary output from MoleBlaster (Active)"
+            "Name" = "8:MoleBlaster"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
