@@ -13,6 +13,84 @@
 "SccProvider" = "8:"
     "Hierarchy"
     {
+        "Entry"
+        {
+        "MsmKey" = "8:_098B8C5E6860457DA9010457967F277F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_49A0595DDDA2C0D22FBFC723DF80C701"
+        "OwnerKey" = "8:_098B8C5E6860457DA9010457967F277F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5CF5A3A747A1E3658B59FB6AA7C2BD57"
+        "OwnerKey" = "8:_098B8C5E6860457DA9010457967F277F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9717123A5928F69A89004D5BB12EB84E"
+        "OwnerKey" = "8:_098B8C5E6860457DA9010457967F277F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9DA04BDB73050B08A4BB86A5CFDF8011"
+        "OwnerKey" = "8:_9717123A5928F69A89004D5BB12EB84E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9DA04BDB73050B08A4BB86A5CFDF8011"
+        "OwnerKey" = "8:_098B8C5E6860457DA9010457967F277F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9DA04BDB73050B08A4BB86A5CFDF8011"
+        "OwnerKey" = "8:_5CF5A3A747A1E3658B59FB6AA7C2BD57"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9DA04BDB73050B08A4BB86A5CFDF8011"
+        "OwnerKey" = "8:_49A0595DDDA2C0D22FBFC723DF80C701"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9DA04BDB73050B08A4BB86A5CFDF8011"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_098B8C5E6860457DA9010457967F277F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9717123A5928F69A89004D5BB12EB84E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5CF5A3A747A1E3658B59FB6AA7C2BD57"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_49A0595DDDA2C0D22FBFC723DF80C701"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -96,10 +174,142 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_236305F040FB4AD98C6E859F6A5DC1EC"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
+                }
             }
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_49A0595DDDA2C0D22FBFC723DF80C701"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:indigo-renderer-dotnet, Version=1.1.5589.31744, Culture=neutral, PublicKeyToken=09f0421d14bc0b92, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_49A0595DDDA2C0D22FBFC723DF80C701"
+                    {
+                    "Name" = "8:indigo-renderer-dotnet.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:indigo-renderer-dotnet.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CF5A3A747A1E3658B59FB6AA7C2BD57"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:bingo-dotnet, Version=1.1.5589.31745, Culture=neutral, PublicKeyToken=6a31cb7055c16a21, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5CF5A3A747A1E3658B59FB6AA7C2BD57"
+                    {
+                    "Name" = "8:bingo-dotnet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:bingo-dotnet.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9717123A5928F69A89004D5BB12EB84E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:indigo-inchi-dotnet, Version=1.1.5589.31744, Culture=neutral, PublicKeyToken=6a31cb7055c16a21, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9717123A5928F69A89004D5BB12EB84E"
+                    {
+                    "Name" = "8:indigo-inchi-dotnet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:indigo-inchi-dotnet.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9DA04BDB73050B08A4BB86A5CFDF8011"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:indigo-dotnet, Version=1.1.5589.31742, Culture=neutral, PublicKeyToken=ca8e3320bc4499e0, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9DA04BDB73050B08A4BB86A5CFDF8011"
+                    {
+                    "Name" = "8:indigo-dotnet.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:indigo-dotnet.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -115,6 +325,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_92C20265763D4BF5B79537A22E465501"
+                    {
+                    "Name" = "8:Brodbelt Group"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_EF50A0A1A0644A94BF90B80CD35DA553"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_648DF33E1A8E42D3A8C826CA5B9841B0"
@@ -277,6 +498,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1A83D71A2EC14DDBB38F419D6A2F88A6"
+            {
+            "Name" = "8:Shortcut to Primary output from MoleBlaster (Active)"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_098B8C5E6860457DA9010457967F277F"
+            "Folder" = "8:_92C20265763D4BF5B79537A22E465501"
+            "WorkingFolder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_505776B484844069B95454E0ACEE101A"
+            {
+            "Name" = "8:Shortcut to Primary output from MoleBlaster (Active)"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_098B8C5E6860457DA9010457967F277F"
+            "Folder" = "8:_648DF33E1A8E42D3A8C826CA5B9841B0"
+            "WorkingFolder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -676,6 +925,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_098B8C5E6860457DA9010457967F277F"
+            {
+            "SourcePath" = "8:..\\MoleBlaster\\obj\\Debug\\MoleBlaster.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B8831C9A50A747DAB75F76243D93AF9A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{5154B6DF-27EB-4938-84C9-051372AE050B}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
         }
     }
 }
