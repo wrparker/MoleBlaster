@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoleBlaster", "MoleBlaster\MoleBlaster.csproj", "{5154B6DF-27EB-4938-84C9-051372AE050B}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "setup_MSVS_2013", "setup_MSVS_2013\setup_MSVS_2013.vdproj", "{733F45C0-8D1B-4B45-BB51-B113B9EC0161}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install", "install\install.vdproj", "{76C4F83B-FC10-4CA5-AE62-82AAF0B4A6BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{5154B6DF-27EB-4938-84C9-051372AE050B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5154B6DF-27EB-4938-84C9-051372AE050B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5154B6DF-27EB-4938-84C9-051372AE050B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{733F45C0-8D1B-4B45-BB51-B113B9EC0161}.Debug|Any CPU.ActiveCfg = Debug
-		{733F45C0-8D1B-4B45-BB51-B113B9EC0161}.Release|Any CPU.ActiveCfg = Release
+		{76C4F83B-FC10-4CA5-AE62-82AAF0B4A6BD}.Debug|Any CPU.ActiveCfg = Debug
+		{76C4F83B-FC10-4CA5-AE62-82AAF0B4A6BD}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
